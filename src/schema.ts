@@ -9,7 +9,7 @@
  *   )
  *
  * Note: more complex Manticore table definitions are not possible to express using
- * Drizzle schema. For example, I don't think there's a way to specify MVA columsn,
+ * Drizzle schema. For example, I don't think there's a way to specify MVA columns,
  * or pass parameters to, e.g., specify infix length or enable the columnar library.
  * 
  * The easy way to handle this is to keep a separate `schema.sql`, which stores the
