@@ -1,4 +1,4 @@
-import { and, count, eq } from "drizzle-orm";
+import { and, count, eq, sql } from "drizzle-orm";
 import { db, executeQuery, stringOfQuery } from "./dbClient";
 import { posts } from "./schema";
 import { loremIpsum } from "./loremIpsum";
@@ -75,7 +75,8 @@ await executeQuery(selectCountQuery);
 const selectWhereQuery = db
   .select()
   .from(posts)
-  .where(eq(posts.user, "alice"))
+  .where(eq(posts.user, "alice")) // this generates incompatible SQL
+  // .where(eq(sql.raw(`\`${posts.user.name}\``), "alice")) // this works
   .toSQL();
 console.log(`[Select where]\n${stringOfQuery(selectWhereQuery)}\n`);
 await executeQuery(selectWhereQuery);
@@ -83,7 +84,11 @@ await executeQuery(selectWhereQuery);
 /**
  * Deletes post with ID 1.
  */
-const deleteSimpleQuery = db.delete(posts).where(eq(posts.id, 1)).toSQL();
+const deleteSimpleQuery = db
+  .delete(posts)
+  .where(eq(posts.id, 1)) // this generates incompatible SQL
+  // .where(eq(sql.raw(`\`${posts.id.name}\``), 1)) // this works
+  .toSQL();
 console.log(`[Delete simple]\n${stringOfQuery(deleteSimpleQuery)}\n`);
 await executeQuery(deleteSimpleQuery);
 
@@ -92,7 +97,9 @@ await executeQuery(deleteSimpleQuery);
  */
 const deleteMultiConditionQuery = db
   .delete(posts)
-  .where(and(eq(posts.id, 4), eq(posts.user, "alice")))
+  .where(and(eq(posts.id, 4), sql`match('lorem')`)) // this generates incompatible SQL
+  // this works
+  // .where(sql`${eq(sql.raw(`\`${posts.id.name}\``), 4)} and ${sql`match('lorem')`}`)
   .toSQL();
 console.log(
   `[Delete multi-condition]\n${stringOfQuery(deleteMultiConditionQuery)}\n`

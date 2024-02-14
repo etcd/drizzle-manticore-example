@@ -71,3 +71,7 @@ delete from `Post` where `Post`.`id` = 1
 [Delete multi-condition]
 delete from `Post` where (`Post`.`id` = 4 and `Post`.`user` = 'alice')
 ```
+
+Note: for the reasons outlined in [this issue](https://github.com/manticoresoftware/manticoresearch/issues/1824), many of these queries
+are expected to fail. Workarounds are currently required to make these Drizzle
+queries compatible with Manticore - these are documented in `index.ts`.
