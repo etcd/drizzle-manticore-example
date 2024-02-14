@@ -15,11 +15,15 @@ export const stringOfQuery = (query: Query) => {
   return sqlstring.format(query.sql, query.params);
 };
 
-export const executeQuery = (query: Query) => {
+export const executeQuery = async (query: Query) => {
   const queryString = stringOfQuery(query);
 
-  return fetch(`${process.env.MANTICORE_URL}/cli_json`, {
-    method: "POST",
-    body: encodeURIComponent(queryString),
-  });
+  try {
+    return await fetch(`${process.env.MANTICORE_URL}/cli_json`, {
+      method: "POST",
+      body: encodeURIComponent(queryString),
+    });
+  } catch (e) {
+    console.log(`Failed to execute query\n`);
+  }
 };

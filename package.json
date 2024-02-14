@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "demo": "bun ./src/index.ts",
+    "demo": "npx tsx ./src/index.ts",
     "db:push": "drizzle-kit push:mysql",
     "db:studio": "drizzle-kit studio"
   },
