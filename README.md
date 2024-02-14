@@ -17,10 +17,12 @@ of that file.)
 A Drizzle ORM object is initialized in `dbClient.ts`, given the schema above and
 a connection. Drizzle provides numerous adapters for different databases and
 connection mechanisms. Drizzle has [MySQL adapters](https://orm.drizzle.team/docs/get-started-mysql) for the mysql2 and Planetscale
-libraries. This project uses the Planetscale adapter because the mysql2 adapter
-tries to connect to the database on initialization, but this project uses
-Drizzle _only_ to generate SQL strings; the connection URL passed to Drizzle is
-fake (execution is handled by POSTing to Manticore's HTTP API).
+libraries.
+
+As seen in `dbClient.ts`, this project uses the Planetscale adapter because the
+mysql2 adapter tries to connect to the database on initialization, but this
+project uses Drizzle _only_ to generate SQL strings; the connection URL passed
+to Drizzle is fake (execution is handled by POSTing to Manticore's HTTP API).
 
 Note: It's possible that Manticore's MySQL API is compatible with Drizzle's
 mysql2 adapter, but I haven't tested this.
