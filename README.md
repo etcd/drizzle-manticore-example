@@ -21,8 +21,9 @@ libraries.
 
 As seen in `dbClient.ts`, this project uses the Planetscale adapter because the
 mysql2 adapter tries to connect to the database on initialization, but this
-project uses Drizzle _only_ to generate SQL strings; the connection URL passed
-to Drizzle is fake (execution is handled by POSTing to Manticore's HTTP API).
+project uses Drizzle _only_ to generate SQL strings, and the connection URL
+passed to Drizzle is fake (execution is instead handled by POSTing to
+Manticore's HTTP API).
 
 Note: It's possible that Manticore's MySQL API is compatible with Drizzle's
 mysql2 adapter, but I haven't tested this.
