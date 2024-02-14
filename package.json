@@ -1,0 +1,29 @@
+{
+  "name": "drizzle-manticore-example",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "demo": "bun ./src/index.ts",
+    "db:push": "drizzle-kit push:mysql",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@planetscale/database": "^1.11.0",
+    "drizzle-orm": "^0.29.3",
+    "sqlstring": "^2.3.3"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.44.7",
+    "@types/node": "^18.17.0",
+    "@types/sqlstring": "^2.3.2",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "drizzle-kit": "^0.20.9",
+    "eslint": "^8.54.0",
+    "mysql2": "^3.6.1",
+    "prettier": "^3.1.0",
+    "typescript": "^5.1.6"
+  },
+  "packageManager": "npm@10.2.4"
+}
